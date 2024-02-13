@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains a collection of Ansible playbooks used for automating tasks such as setting up web servers, databases, and so on.
+This repository contains a collection of Ansible playbooks used for automating tasks such as setting up ubuntu machines freshly created, kubernetes for local environments, joplin, etc.
 
 ## Getting Started
 
