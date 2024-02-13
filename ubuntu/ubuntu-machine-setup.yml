@@ -1,0 +1,168 @@
+---
+- name: Setup Ubuntu Machine for Work
+  hosts: localhost
+  become: yes
+  become_method: sudo
+  
+  tasks:
+    - name: Update package index
+      apt:
+        update_cache: yes
+
+    # Install VSCode
+    - name: Add Microsoft GPG key
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+
+    - name: Add VSCode repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+        state: present
+        filename: "vscode"
+
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Visual Studio Code
+      apt:
+        name: code
+        state: present
+    
+    - name: Add VSCode to PATH
+      lineinfile:
+        path: /etc/profile
+        line: 'export PATH="$PATH:/usr/share/code/bin"'
+        state: present
+        backup: yes
+
+    # Install Docker
+
+    - name: Install prerequisites
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+
+    - name: Add Docker's official GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+
+    - name: Update package index
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+    
+    - name: Create docker group
+      group:
+        name: docker
+
+    - name: Add current user to docker group
+      user:
+        name: "{{ ansible_env.USER }}"
+        groups: docker
+        append: yes
+
+    # Install Termius
+
+    - name: Download Termius .deb package
+      get_url:
+        url: https://autoupdate.termius.com/linux/Termius.deb
+        dest: /tmp/Termius.deb
+
+    - name: Install Termius package
+      apt:
+        deb: /tmp/Termius.deb
+        state: present
+    
+    # Install Postman
+
+    - name: Install Postman snap
+      snap:
+        name: postman
+        state: present
+    
+    # Install JQ
+
+    - name: Install jq
+      apt:
+        name: jq
+        state: present
+
+    # Install nektos/act
+
+    - name: Create directory for act binary
+      file:
+        path: /usr/local/bin
+        state: directory
+
+    - name: Get latest release URL from GitHub API
+      uri:
+        url: https://api.github.com/repos/nektos/act/releases/latest
+        return_content: yes
+      register: latest_release
+
+    - name: Extract download URL for act binary
+      set_fact:
+        act_download_url: "{{ latest_release.json.assets | selectattr('name', 'match', 'act_Linux_x86_64.tar.gz') | map(attribute='browser_download_url') | list | first }}"
+
+    - name: Download latest act binary
+      get_url:
+        url: "{{ act_download_url }}"
+        dest: /tmp/act_Linux_x86_64.tar.gz
+
+    - name: Extract act binary
+      ansible.builtin.unarchive:
+        src: /tmp/act_Linux_x86_64.tar.gz
+        dest: /usr/local/bin
+
+    - name: Set executable permissions for act binary
+      ansible.builtin.file:
+        path: /usr/local/bin/act
+        mode: '+x'
+    
+    # Install Joplin
+
+    - name: Install prerequisites
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - libfuse2
+
+    - name: Download Joplin installation script
+      get_url:
+        url: "https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh"
+        dest: /tmp/Joplin_install_and_update.sh
+
+    - name: Set execute permissions for the installation script
+      file:
+        path: /tmp/Joplin_install_and_update.sh
+        mode: 'u+x,g+x'
+    
+    - name: Execute Joplin installation script
+      become: no
+      shell: bash /tmp/Joplin_install_and_update.sh
