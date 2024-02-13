@@ -38,9 +38,6 @@ ansible-playbook install_joplin.yaml
 3. **Update Desktop Database:**
    - The playbook updates the desktop database for applications and icons.
 
-4. **Remove Temporary Installation Directory:**
-   - The playbook removes the temporary installation directory used during installation.
-
 To uninstall Joplin, run the `uninstall_joplin.yaml` playbook using the following command:
 
 ```bash
