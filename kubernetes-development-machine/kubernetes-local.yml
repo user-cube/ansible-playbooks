@@ -1,0 +1,116 @@
+---
+- name: Install Kubernetes Locally
+  hosts: localhost
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+    # Install minikube
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - apt-transport-https
+        - curl
+        - gnupg
+
+    - name: Add Kubernetes apt repository key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+    - name: Add Kubernetes apt repository
+      apt_repository:
+        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+        filename: kubernetes
+
+    - name: Download Minikube binary
+      get_url:
+        url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        dest: /usr/local/bin/minikube
+        mode: '0755'
+
+    - name: Start Minikube
+      become: no
+      command: minikube start --driver=docker
+
+    # Install minikube ingress addon
+
+    - name: Enable Ingress addon
+      become: no
+      command: minikube addons enable ingress
+
+    # Setup alias for kubectl
+
+    - name: Add alias for kubectl
+      lineinfile:
+        path: "~/.bashrc"
+        line: "{{ item }}"
+        create: yes
+      become: no
+      when: ansible_user_shell == '/bin/bash'
+      loop:
+        - "alias k=kubectl"
+        - "setNS() { kubectl config set-context --current --namespace=\"$@\" ; }"
+
+    - name: Add alias for kubectl
+      lineinfile:
+        path: "~/.zshrc"
+        line: "{{ item }}"
+        create: yes
+      become: no
+      when: ansible_user_shell == '/bin/zsh'
+      loop:
+        - "alias k=kubectl"
+        - "setNS() { kubectl config set-context --current --namespace=\"$@\" ; }"
+    
+    # Install K9S
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - wget
+        - unzip
+      tags:
+        - k9s
+
+    - name: Find latest k9s release version
+      uri:
+        url: "https://api.github.com/repos/derailed/k9s/releases/latest"
+        return_content: yes
+      register: latest_release
+      tags:
+        - k9s
+
+    - name: Extract latest k9s release version
+      set_fact:
+        k9s_version: "{{ latest_release.json.tag_name }}"
+      tags:
+        - k9s
+
+    - name: Download k9s binary
+      get_url:
+        url: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_Linux_amd64.tar.gz"
+        dest: "/tmp/k9s.tar.gz"
+        mode: '0644'
+      tags:
+        - k9s
+
+    - name: Extract k9s binary
+      unarchive:
+        src: "/tmp/k9s.tar.gz"
+        dest: "/usr/local/bin"
+        remote_src: yes
+      tags:
+        - k9s
+
+    - name: Make k9s executable
+      file:
+        path: "/usr/local/bin/k9s"
+        mode: '0755'
+      tags:
+        - k9s
