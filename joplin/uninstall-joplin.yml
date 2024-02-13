@@ -28,9 +28,3 @@
 
     - name: Update desktop database for icons
       command: update-desktop-database ~/.local/share/icons
-
-    - name: Remove temporary installation directory (replace /path/to/temporary/installation/directory with the actual path)
-      file:
-        path: /path/to/temporary/installation/directory
-        state: absent
-        recursive: yes
