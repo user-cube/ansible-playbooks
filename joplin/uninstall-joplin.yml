@@ -1,8 +1,6 @@
 ---
 - name: Uninstall Joplin
   hosts: localhost
-  become: yes
-  become_method: sudo
 
   tasks:
     - name: Remove Joplin directory
