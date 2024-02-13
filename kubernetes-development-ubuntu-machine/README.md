@@ -13,7 +13,7 @@ This repository contains an Ansible playbook for setting up Kubernetes locally u
 2. Run the Ansible playbook:
 
 ```bash
-ansible-playbook kubernetes-local.yml
+ansible-playbook kubernetes-local.yml --ask-become-pass
 ```
 
 ## What does the playbook do?
