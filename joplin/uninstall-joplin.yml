@@ -1,0 +1,38 @@
+---
+- name: Uninstall Joplin
+  hosts: localhost
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: Remove Joplin directory
+      file:
+        path: ~/.joplin/
+        state: absent
+
+    - name: Remove Joplin desktop icon (appimagekit)
+      file:
+        path: ~/.local/share/applications/appimagekit-joplin.desktop
+        state: absent
+
+    - name: Remove Joplin desktop icon
+      file:
+        path: ~/.local/share/applications/joplin.desktop
+        state: absent
+
+    - name: Remove Joplin icon
+      file:
+        path: ~/.local/share/icons/hicolor/512x512/apps/joplin.png
+        state: absent
+
+    - name: Update desktop database for applications
+      command: update-desktop-database ~/.local/share/applications
+
+    - name: Update desktop database for icons
+      command: update-desktop-database ~/.local/share/icons
+
+    - name: Remove temporary installation directory (replace /path/to/temporary/installation/directory with the actual path)
+      file:
+        path: /path/to/temporary/installation/directory
+        state: absent
+        recursive: yes
