@@ -14,7 +14,7 @@ This repository contains a collection of Ansible playbooks used for automating t
 
 ### Installing
 
-* Clone this repository to your local machine using `https://github.com/yourusername/ansible-playbooks.git`
+* Clone this repository to your local machine using `https://github.com/user-cube/ansible-playbooks.git`
 * Navigate to the cloned repository
 
 ### Executing program
