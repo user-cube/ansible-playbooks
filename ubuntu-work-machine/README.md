@@ -8,7 +8,7 @@ This Ansible playbook automates the setup process for an Ubuntu machine tailored
 2. Create an inventory file with your localhost or target machine.
 3. Run the playbook using the command:
     ```
-    ansible-playbook -i <inventory_file> setup_ubuntu_for_work.yaml
+    ansible-playbook ubuntu-machine-setup.yml --ask-become-pass
     ```
 
 ## Tasks
