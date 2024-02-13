@@ -1,0 +1,25 @@
+---
+- name: Install Joplin
+  hosts: localhost
+
+  tasks:
+  - name: Install prerequisites
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - libfuse2
+
+    - name: Download Joplin installation script
+      get_url:
+        url: "https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh"
+        dest: /tmp/Joplin_install_and_update.sh
+
+    - name: Set execute permissions for the installation script
+      file:
+        path: /tmp/Joplin_install_and_update.sh
+        mode: 'u+x,g+x'
+    
+    - name: Execute Joplin installation script
+      become: no
+      shell: bash /tmp/Joplin_install_and_update.sh
