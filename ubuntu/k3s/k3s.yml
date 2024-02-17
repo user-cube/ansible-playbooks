@@ -1,0 +1,156 @@
+---
+- name: Install Kubernetes Locally
+  hosts: localhost
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+    # Install k3s
+    - name: Download k3s installation script
+      get_url:
+        url: "https://get.k3s.io"
+        dest: "/tmp/install_k3s.sh"
+
+    - name: Execute k3s installation script
+      shell: "/bin/bash /tmp/install_k3s.sh"
+      args:
+        creates: /etc/rancher/k3s/k3s.yaml
+      register: k3s_install_output
+
+    - debug:
+        msg: "{{ k3s_install_output.stdout_lines }}"
+
+    - name: Get user's home directory
+      set_fact:
+        user_home: "{{ lookup('env', 'HOME') }}"
+    
+    - name: Create .kube directory
+      file:
+        path: "{{ user_home }}/.kube"
+        state: directory
+        owner: "{{ lookup('env', 'USER') }}"
+        mode: '0755'
+
+    # Copy k3s configuration to user's home directory
+    - name: Copy k3s configuration to user's home directory
+      copy:
+        src: "/etc/rancher/k3s/k3s.yaml"
+        dest: "{{ user_home }}/.kube/config"
+        remote_src: yes
+        owner: "{{ lookup('env', 'USER') }}"
+
+    # Setup alias for kubectl
+    - name: Add alias for kubectl
+      lineinfile:
+        path: "~/.bashrc"
+        line: "{{ item }}"
+        create: yes
+      become: no
+      when: ansible_user_shell == '/bin/bash'
+      loop:
+        - "alias k=kubectl"
+        - "setNS() { kubectl config set-context --current --namespace=\"$@\" ; }"
+
+    - name: Add alias for kubectl
+      lineinfile:
+        path: "~/.zshrc"
+        line: "{{ item }}"
+        create: yes
+      become: no
+      when: ansible_user_shell == '/bin/zsh'
+      loop:
+        - "alias k=kubectl"
+        - "setNS() { kubectl config set-context --current --namespace=\"$@\" ; }"
+    
+    # Install K9S
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - wget
+        - unzip
+      tags:
+        - k9s
+
+    - name: Find latest k9s release version
+      uri:
+        url: "https://api.github.com/repos/derailed/k9s/releases/latest"
+        return_content: yes
+      register: latest_release
+      tags:
+        - k9s
+
+    - name: Extract latest k9s release version
+      set_fact:
+        k9s_version: "{{ latest_release.json.tag_name }}"
+      tags:
+        - k9s
+
+    - name: Download k9s binary
+      get_url:
+        url: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_Linux_amd64.tar.gz"
+        dest: "/tmp/k9s.tar.gz"
+        mode: '0644'
+      tags:
+        - k9s
+
+    - name: Extract k9s binary
+      unarchive:
+        src: "/tmp/k9s.tar.gz"
+        dest: "/usr/local/bin"
+        remote_src: yes
+      tags:
+        - k9s
+
+    - name: Make k9s executable
+      file:
+        path: "/usr/local/bin/k9s"
+        mode: '0755'
+      tags:
+        - k9s
+
+    # Install helm
+    - name: Install required dependencies
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - curl
+        - tar
+
+    - name: Fetch latest Helm version
+      uri:
+        url: https://api.github.com/repos/helm/helm/releases/latest
+        return_content: yes
+      register: helm_latest_release
+
+    - set_fact:
+        helm_version: "{{ helm_latest_release.json.tag_name | regex_replace('^v', '') }}"
+
+    - name: Download Helm binary
+      get_url:
+        url: "https://get.helm.sh/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+        dest: "/tmp/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+
+    - name: Extract Helm binary
+      ansible.builtin.unarchive:
+        src: "/tmp/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+        dest: /usr/local/bin
+        remote_src: yes
+        creates: "/usr/local/bin/linux-amd64/helm"
+
+    - name: Ensure Helm binary is executable
+      file:
+        path: /usr/local/bin/helm
+        state: link
+        src: /usr/local/bin/linux-amd64/helm
+        mode: u+x
+
+    - name: Verify Helm installation
+      command: helm version
+      register: helm_version_output
+
+    - debug:
+        var: helm_version_output.stdout_lines
