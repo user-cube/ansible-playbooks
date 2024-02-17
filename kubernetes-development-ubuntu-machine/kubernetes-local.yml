@@ -114,3 +114,47 @@
         mode: '0755'
       tags:
         - k9s
+
+    # Install helm
+    - name: Install required dependencies
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - curl
+        - tar
+
+    - name: Fetch latest Helm version
+      uri:
+        url: https://api.github.com/repos/helm/helm/releases/latest
+        return_content: yes
+      register: helm_latest_release
+
+    - set_fact:
+        helm_version: "{{ helm_latest_release.json.tag_name | regex_replace('^v', '') }}"
+
+    - name: Download Helm binary
+      get_url:
+        url: "https://get.helm.sh/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+        dest: "/tmp/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+
+    - name: Extract Helm binary
+      ansible.builtin.unarchive:
+        src: "/tmp/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+        dest: /usr/local/bin
+        remote_src: yes
+        creates: "/usr/local/bin/linux-amd64/helm"
+
+    - name: Ensure Helm binary is executable
+      file:
+        path: /usr/local/bin/helm
+        state: link
+        src: /usr/local/bin/linux-amd64/helm
+        mode: u+x
+
+    - name: Verify Helm installation
+      command: helm version
+      register: helm_version_output
+
+    - debug:
+        var: helm_version_output.stdout_lines
