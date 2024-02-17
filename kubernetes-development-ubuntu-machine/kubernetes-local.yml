@@ -15,6 +15,7 @@
         - apt-transport-https
         - curl
         - gnupg
+        - vim
 
     - name: Add Kubernetes apt repository key
       apt_key:
