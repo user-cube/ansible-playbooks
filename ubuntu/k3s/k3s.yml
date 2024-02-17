@@ -33,7 +33,7 @@
         path: "{{ user_home }}/.kube"
         state: directory
         owner: "{{ lookup('env', 'USER') }}"
-        mode: '0600'
+      become: no
     
     - name: Append export command to shell config
       ansible.builtin.lineinfile:
@@ -51,6 +51,7 @@
         dest: "{{ user_home }}/.kube/config"
         remote_src: yes
         owner: "{{ lookup('env', 'USER') }}"
+        mode: '0600'
 
     # Setup alias for kubectl
     - name: Append export command to shell config
