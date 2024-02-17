@@ -17,6 +17,9 @@
       args:
         creates: /etc/rancher/k3s/k3s.yaml
       register: k3s_install_output
+      environment:
+        K3S_KUBECONFIG_MODE: "644"
+        INSTALL_K3S_EXEC: "--disable=traefik"
 
     - debug:
         msg: "{{ k3s_install_output.stdout_lines }}"
