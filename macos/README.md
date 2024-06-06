@@ -11,3 +11,9 @@
 ```bash
 brew install ansible
 ```
+
+## Execute playbook
+
+```bash
+ansible-playbook daily-driver.yml
+```
