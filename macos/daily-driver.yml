@@ -1,0 +1,89 @@
+---
+- name: Install MacOS Applications for Daily Driver Use
+  hosts: localhost
+
+  tasks:    
+    - name: Install docker and docker-compose
+      command: brew install
+      with_items:
+        - docker
+        - docker-compose
+
+    - name: Install homebrew cask
+      command: brew install --cask
+      with_items:
+        - devtoys
+        - alt-tab
+        - visual-studio-code
+        - termius
+        - caffeine
+        - macs-fan-control
+        - warp
+        - notion-calendar
+        - cursor
+        - spotify
+        - iterm2
+        - postman
+        - joplin
+
+    - name: Install homebrew packages
+      command: brew install --formula
+      with_items:
+        - yabai
+        - skhd
+        - bat
+        - act
+        - jq
+        - k9s
+        - htop
+        - neovim
+        - wget
+        - trivy
+        - packer
+        - go
+        - tree
+        - watch 
+        - tfenv
+        - goreleaser
+
+    - name: Install imgcat for iTerm2
+      command: curl -o /usr/local/bin/imgcat https://iterm2.com/utilities/imgcat && chmod +x /usr/local/bin/imgcat
+
+    - name: Clone dotfiles repository
+      git:
+        repo: https://github.com/user-cube/dotfiles.git
+        dest: ~/dotfiles
+
+    - name: Copy ~/dotfiles/.config to ~/.config
+      command: cp -r ~/dotfiles/.config ~/.config
+    
+    - name: Copy ~/dotfiles/.zshrc to ~/.zshrc
+      command: cp ~/dotfiles/.zshrc ~/.zshrc
+
+    - name: Download powerlevel10k theme
+      git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: ~/powerlevel10k
+        depth: 1
+    
+    - name: Install MesloLGS NF Regular.ttf
+      get_url:
+        url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+        dest: ~/Library/Fonts/MesloLGS NF Regular.ttf
+    
+    - name: Install MesloLGS NF Bold.ttf
+      get_url:
+        url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+        dest: ~/Library/Fonts/MesloLGS NF Bold.ttf
+    
+    - name: Install MesloLGS NF Italic.ttf
+      get_url:
+        url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+        dest: ~/Library/Fonts/MesloLGS NF Italic.ttf
+    
+    - name: Install MesloLGS NF Bold Italic.ttf
+      get_url:
+        url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+        dest: ~/Library/Fonts/MesloLGS NF Bold Italic.ttf
+      
+    
