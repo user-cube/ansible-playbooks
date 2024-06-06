@@ -49,6 +49,18 @@
     - name: Install imgcat for iTerm2
       command: curl -o /usr/local/bin/imgcat https://iterm2.com/utilities/imgcat && chmod +x /usr/local/bin/imgcat
 
+    - name: Clone NvChad starter repository
+      git:
+        repo: 'https://github.com/NvChad/starter'
+        dest: '~/.config/nvim'
+        update: yes
+
+    - name: Open nvim to trigger initial setup
+      command: nvim
+      async: 1
+      poll: 0
+      ignore_errors: yes
+
     - name: Clone dotfiles repository
       git:
         repo: https://github.com/user-cube/dotfiles.git

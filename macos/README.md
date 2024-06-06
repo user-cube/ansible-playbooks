@@ -17,3 +17,11 @@ brew install ansible
 ```bash
 ansible-playbook daily-driver.yml
 ```
+
+## Notes
+
+Open neovim and execute the following command:
+
+```nvim
+:MasonInstallAll
+```
