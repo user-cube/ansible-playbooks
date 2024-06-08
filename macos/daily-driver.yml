@@ -25,6 +25,7 @@
         - iterm2
         - postman
         - joplin
+        - raycast
 
     - name: Install homebrew packages
       command: brew install --formula
