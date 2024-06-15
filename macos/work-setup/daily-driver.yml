@@ -11,6 +11,7 @@
     - include_tasks: tasks/fonts.yml
     - include_tasks: tasks/dotfiles.yml
     - include_tasks: tasks/zsh.yml
+    - include_tasks: tasks/services.yml # Start services
 
 
     

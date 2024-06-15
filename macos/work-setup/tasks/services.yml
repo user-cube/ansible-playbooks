@@ -1,0 +1,11 @@
+- name: Start Yabai
+  command: yabai --start-service
+  tags:
+    - install
+    - ui-apps
+
+- name: Start skhd
+  command: brew services start skhd
+  tags:
+    - install
+    - ui-apps
