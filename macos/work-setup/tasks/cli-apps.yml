@@ -1,0 +1,19 @@
+- name: Install homebrew packages
+  command: brew install --formula {{ item }}
+  with_items:
+    - yabai
+    - skhd
+    - bat
+    - act
+    - jq
+    - k9s
+    - htop
+    - neovim
+    - wget
+    - trivy
+    - packer
+    - go
+    - tree
+    - watch 
+    - tfenv
+    - goreleaser

@@ -1,0 +1,25 @@
+---
+- name: Install MacOS Applications for Daily Driver Use
+  hosts: localhost
+
+  tasks:
+    - include_tasks: tasks/docker.yml
+    - include_tasks: tasks/ui-apps.yml
+    - include_tasks: tasks/cli-apps.yml
+    - include_tasks: tasks/nvim.yml
+    - include_tasks: tasks/iTerm2.yml
+    - include_tasks: tasks/fonts.yml
+    - include_tasks: tasks/dotfiles.yml
+    - include_tasks: tasks/zsh.yml
+
+
+    
+
+    
+
+   
+
+    
+
+    
+    

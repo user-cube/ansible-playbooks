@@ -1,0 +1,21 @@
+- name: Install homebrew cask
+  command: brew install --cask {{ item }}
+  with_items:
+    - devtoys
+    - alt-tab
+    - visual-studio-code
+    - termius
+    - caffeine
+    - macs-fan-control
+    - warp
+    - notion-calendar
+    - cursor
+    - spotify
+    - iterm2
+    - postman
+    - joplin
+    - raycast
+  tags:
+    - install
+    - cask
+    - ui-apps
