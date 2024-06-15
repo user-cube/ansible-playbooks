@@ -3,3 +3,6 @@
     repo: https://github.com/romkatv/powerlevel10k.git
     dest: ~/powerlevel10k
     depth: 1
+  tags:
+    - install
+    - zsh

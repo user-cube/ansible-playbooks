@@ -17,3 +17,6 @@
     - watch 
     - tfenv
     - goreleaser
+  tags: 
+    - install
+    - cli-apps

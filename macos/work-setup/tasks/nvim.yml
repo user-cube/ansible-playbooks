@@ -3,9 +3,15 @@
     repo: 'https://github.com/NvChad/starter'
     dest: '~/.config/nvim'
     update: yes
+  tags:
+    - nvim
+    - install
 
 - name: Open nvim to trigger initial setup
   command: nvim
   async: 1
   poll: 0
   ignore_errors: true
+  tags:
+    - nvim
+    - install

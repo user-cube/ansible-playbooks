@@ -2,9 +2,18 @@
   git:
     repo: https://github.com/user-cube/dotfiles.git
     dest: ~/dotfiles
+  tags: 
+    - dotfiles
+    - install
 
 - name: Copy ~/dotfiles/.config to ~/.config
   command: cp -r ~/dotfiles/.config ~/.config
+  tags: 
+    - dotfiles
+    - install
 
 - name: Copy ~/dotfiles/.zshrc to ~/.zshrc
   command: cp ~/dotfiles/.zshrc ~/.zshrc
+  tags: 
+    - dotfiles
+    - install

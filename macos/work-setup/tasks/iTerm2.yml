@@ -2,6 +2,12 @@
   get_url:
     url: https://iterm2.com/utilities/imgcat
     dest: /usr/local/bin/imgcat
+  tags: 
+    - install
+    - iterm2
 
 - name: Make imgcat executable
   command: chmod +x /usr/local/bin/imgcat
+  tags: 
+    - install
+    - iterm2
