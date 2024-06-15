@@ -17,3 +17,9 @@
   tags: 
     - dotfiles
     - install
+
+- name: Copy ~/dotfiles/git_hooks to ~/git_hooks
+  command: cp -r ~/dotfiles/git_hooks ~/git_hooks
+  tags: 
+    - dotfiles
+    - install
