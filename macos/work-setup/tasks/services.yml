@@ -5,7 +5,7 @@
     - ui-apps
 
 - name: Start skhd
-  command: brew services start skhd
+  command: skhd --start-service
   tags:
     - install
     - ui-apps
