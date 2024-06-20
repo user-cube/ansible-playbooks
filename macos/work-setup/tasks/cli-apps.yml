@@ -17,6 +17,9 @@
     - watch 
     - tfenv
     - goreleaser
+    - markdown-toc
+    - helm
+    - tmux
   tags: 
     - install
     - cli-apps
