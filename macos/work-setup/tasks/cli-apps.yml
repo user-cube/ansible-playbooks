@@ -20,6 +20,7 @@
     - markdown-toc
     - helm
     - tmux
+    - terminal-notifier
   tags: 
     - install
     - cli-apps
