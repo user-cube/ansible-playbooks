@@ -21,6 +21,7 @@
     - helm
     - tmux
     - fzf
+    - terminal-notifier
   tags: 
     - install
     - cli-apps
