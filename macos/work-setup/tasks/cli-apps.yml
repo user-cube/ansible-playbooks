@@ -1,8 +1,8 @@
 - name: Install homebrew packages
   command: brew install --formula {{ item }}
   with_items:
-    - yabai
-    - skhd
+    - koekeishiya/formulae/yabai
+    - koekeishiya/formulae/skhd
     - bat
     - act
     - jq
