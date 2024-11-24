@@ -1,3 +1,16 @@
+- name: Check if /usr/local/bin exists
+  stat:
+    path: /usr/local/bin
+  register: result
+
+- name: Create /usr/local/bin if it does not exist
+  file:
+    path: /usr/local/bin
+    state: directory
+    mode: '0755'
+  when: not result.stat.exists
+  become: yes
+
 - name: Download ImgCat script
   get_url:
     url: https://iterm2.com/utilities/imgcat
@@ -5,9 +18,11 @@
   tags: 
     - install
     - iterm2
+  become: yes
 
 - name: Make imgcat executable
   command: chmod +x /usr/local/bin/imgcat
   tags: 
     - install
     - iterm2
+  become: yes
