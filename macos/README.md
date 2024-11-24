@@ -15,7 +15,7 @@ brew install ansible
 ## Execute playbook
 
 ```bash
-ansible-playbook daily-driver.yml
+ansible-playbook daily-driver.yml -K
 ```
 
 ## Notes
