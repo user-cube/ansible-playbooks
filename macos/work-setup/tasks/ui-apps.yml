@@ -8,14 +8,13 @@
     - caffeine
     - macs-fan-control
     - warp
-    - notion-calendar
     - cursor
     - spotify
     - iterm2
     - postman
-    - joplin
     - spaceid
     - raycast
+    - headlamp
   tags:
     - install
     - ui-apps
