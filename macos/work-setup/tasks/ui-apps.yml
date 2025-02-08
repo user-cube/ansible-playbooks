@@ -15,6 +15,7 @@
     - spaceid
     - raycast
     - headlamp
+    - orbstack
   tags:
     - install
     - ui-apps
