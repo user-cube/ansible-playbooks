@@ -1,6 +1,7 @@
 - name: Install docker and docker-compose
   command: brew install {{ item }}
   with_items:
+    - orbstack # Replacement for docker desktop. Docker Desktop uses too much resources
     - docker-compose
   tags:
     - install
