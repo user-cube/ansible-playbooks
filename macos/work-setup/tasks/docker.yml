@@ -1,7 +1,6 @@
 - name: Install docker and docker-compose
   command: brew install {{ item }}
   with_items:
-    - docker
     - docker-compose
   tags:
     - install
