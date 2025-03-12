@@ -16,6 +16,8 @@
     - raycast
     - headlamp
     - jetbrains-toolbox
+    - wave
+    - font-hack-nerd-font
   tags:
     - install
     - ui-apps
