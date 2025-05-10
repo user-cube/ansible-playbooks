@@ -21,6 +21,7 @@
   - helm
   - helm-docs
   - helmfile
+  - kyverno
   tags:
   - install
   - kubernetes-cli-tools
