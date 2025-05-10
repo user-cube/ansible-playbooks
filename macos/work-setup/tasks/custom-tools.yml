@@ -7,3 +7,12 @@
   tags:
   - install
   - custom-tools
+
+- name: Install tools for demo
+  command: brew install {{ item }}
+  with_items:
+  - imagemagick
+  - gifsicle
+  tags:
+  - demo
+  - custom-tools
