@@ -1,0 +1,7 @@
+- name: Documentation tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - markdown-toc
+  tags:
+  - install
+  - documentation-tools

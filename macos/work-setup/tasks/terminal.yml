@@ -1,0 +1,7 @@
+- name: Install terminal
+  command: brew install --cask {{ item }}
+  with_items:
+  - warp
+  tags:
+  - install
+  - terminal

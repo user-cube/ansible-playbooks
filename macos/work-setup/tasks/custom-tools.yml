@@ -1,0 +1,9 @@
+- name: Install custom golang tools
+  command: go install {{ item }}
+  with_items:
+  - github.com/user-cube/kontext@latest
+  - github.com/user-cube/gclone@latest
+  - github.com/user-cube/aws-cli-manager/v2@latest
+  tags:
+  - install
+  - custom-tools

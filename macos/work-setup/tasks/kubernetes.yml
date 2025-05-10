@@ -1,0 +1,26 @@
+- name: Install cluster visualization tools - UI
+  command: brew install --cask {{ item }}
+  with_items:
+  - headlamp
+  tags:
+  - install
+  - cluster-visualization
+
+- name: Install cluster visualization tools - CLI
+  command: brew install --formula {{ item }}
+  with_items:
+  - k9s
+  tags:
+  - install
+  - cluster-visualization
+
+- name: Kubernetes CLI tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - kubectl
+  - helm
+  - helm-docs
+  - helmfile
+  tags:
+  - install
+  - kubernetes-cli-tools

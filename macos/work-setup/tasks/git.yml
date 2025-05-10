@@ -1,0 +1,19 @@
+- name: Install git tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - git
+  - git-secrets
+  - gitleaks
+  - lazygit
+  tags:
+  - install
+  - git-tools
+
+- name: Install GH CLI
+  command: brew install --formula {{ item }}
+  with_items:
+  - gh
+  tags:
+  - install
+  - gh-cli
+  - git-tools

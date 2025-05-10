@@ -1,0 +1,16 @@
+- name: Install VSCode Based editors
+  command: brew install --cask {{ item }}
+  with_items:
+  - visual-studio-code
+  - cursor
+  tags:
+  - install
+  - editors
+
+- name: Install JetBrains Based editors
+  command: brew install --cask {{ item }}
+  with_items:
+  - jetbrains-toolbox
+  tags:
+  - install
+  - editors

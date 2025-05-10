@@ -1,0 +1,21 @@
+- name: Install Containerization tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - colima
+  - docker
+  - docker-compose
+  - docker-credential-helper
+
+- name: Setup Colima
+  command: colima start --vm-type=vz --vz-rosetta --memory 8 work
+  tags:
+  - virtualization
+  - colima
+
+- name: LazyDocker
+  command: brew install --formula {{ item }}
+  with_items:
+  - lazydocker
+  tags:
+  - virtualization
+  - lazydocker

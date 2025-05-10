@@ -1,31 +1,17 @@
 - name: Install homebrew packages
   command: brew install --formula {{ item }}
   with_items:
-    - koekeishiya/formulae/yabai
-    - koekeishiya/formulae/skhd
-    - bat
-    - act
-    - jq
-    - k9s
-    - htop
-    - neovim
-    - wget
-    - trivy
-    - packer
-    - go
-    - tree
-    - watch 
-    - tfenv
-    - goreleaser
-    - markdown-toc
-    - helm
-    - tmux
-    - fzf
-    - terminal-notifier
-    - helm-docs
-    - kubectx
-    - lazygit
-    - lazydocker
-  tags: 
-    - install
-    - cli-apps
+  - koekeishiya/formulae/yabai
+  - koekeishiya/formulae/skhd
+  - bat
+  - jq
+  - htop
+  - neovim
+  - wget
+  - trivy
+  - tree
+  - watch
+  - fzf
+  tags:
+  - install
+  - cli-apps

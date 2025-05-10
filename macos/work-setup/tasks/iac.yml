@@ -1,0 +1,29 @@
+- name: Install terraform
+  command: brew install --formula {{ item }}
+  with_items:
+  - terraform-docs
+  - tflint
+  - tfsec
+  - tfenv
+  tags:
+  - install
+  - iac
+  - terraform
+
+- name: Install opentofu
+  command: brew install --formula {{ item }}
+  with_items:
+  - opentofu
+  tags:
+  - install
+  - iac
+  - opentofu
+
+- name: Install packer
+  command: brew install --formula {{ item }}
+  with_items:
+  - packer
+  tags:
+  - install
+  - iac
+  - packer

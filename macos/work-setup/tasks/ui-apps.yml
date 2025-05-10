@@ -1,23 +1,12 @@
 - name: Install homebrew cask
   command: brew install --cask {{ item }}
   with_items:
-    - devtoys
-    - alt-tab
-    - visual-studio-code
-    - termius
-    - caffeine
-    - macs-fan-control
-    - warp
-    - cursor
-    - spotify
-    - iterm2
-    - postman
-    - spaceid
-    - raycast
-    - headlamp
-    - jetbrains-toolbox
-    - wave
-    - font-hack-nerd-font
+  - devtoys
+  - caffeine
+  - macs-fan-control
+  - spotify
+  - raycast
+  - font-hack-nerd-font
   tags:
-    - install
-    - ui-apps
+  - install
+  - ui-apps

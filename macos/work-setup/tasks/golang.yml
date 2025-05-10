@@ -1,0 +1,17 @@
+- name: Install golang
+  command: brew install --formula {{ item }}
+  with_items:
+  - go
+  tags:
+  - install
+  - golang
+  - go
+  - programming-languages
+
+- name: Install golang tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - goreleaser
+  tags:
+  - install
+  - golang-tools
