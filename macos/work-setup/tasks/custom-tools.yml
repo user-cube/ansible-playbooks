@@ -4,6 +4,7 @@
   - github.com/user-cube/kontext@latest
   - github.com/user-cube/gclone@latest
   - github.com/user-cube/aws-cli-manager/v2@latest
+  - github.com/user-cube/auth-refresher@latest
   tags:
   - install
   - custom-tools
