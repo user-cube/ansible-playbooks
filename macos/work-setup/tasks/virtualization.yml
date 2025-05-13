@@ -12,6 +12,34 @@
   - virtualization
   - colima
 
+- name: Get latest release from GitHub API
+  uri:
+    url: https://api.github.com/repos/docker/buildx/releases/latest
+    return_content: yes
+  register: github_release
+
+- name: Set latest version and download URL for macOS ARM64
+  set_fact:
+    buildx_version: "{{ github_release.json.tag_name }}"
+    buildx_download_url: >-
+      {{ github_release.json.assets
+        | selectattr('name', 'match', '.*darwin-arm64$')
+        | map(attribute='browser_download_url')
+        | list
+        | first }}
+
+- name: Create Docker CLI plugin directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.docker/cli-plugins"
+    state: directory
+    mode: '0755'
+
+- name: Download Docker Buildx binary for macOS ARM64
+  get_url:
+    url: "{{ buildx_download_url }}"
+    dest: "{{ lookup('env', 'HOME') }}/.docker/cli-plugins/docker-buildx"
+    mode: '0755'
+
 - name: LazyDocker
   command: brew install --formula {{ item }}
   with_items:
