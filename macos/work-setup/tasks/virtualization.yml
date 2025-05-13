@@ -27,18 +27,27 @@
         | map(attribute='browser_download_url')
         | list
         | first }}
+  tags:
+  - virtualization
+  - docker-buildx
 
 - name: Create Docker CLI plugin directory
   file:
     path: "{{ lookup('env', 'HOME') }}/.docker/cli-plugins"
     state: directory
     mode: '0755'
+  tags:
+  - virtualization
+  - docker-buildx
 
 - name: Download Docker Buildx binary for macOS ARM64
   get_url:
     url: "{{ buildx_download_url }}"
     dest: "{{ lookup('env', 'HOME') }}/.docker/cli-plugins/docker-buildx"
     mode: '0755'
+  tags:
+  - virtualization
+  - docker-buildx
 
 - name: LazyDocker
   command: brew install --formula {{ item }}
