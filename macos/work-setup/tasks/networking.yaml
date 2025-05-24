@@ -1,0 +1,11 @@
+- name: Install networking tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - httpie
+  - iperf
+  - nmap
+  - curl
+  - wget
+  tags:
+  - install
+  - networking

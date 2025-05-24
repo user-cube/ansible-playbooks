@@ -1,0 +1,9 @@
+- name: Install CICD tools
+  command: brew install --formula {{ item }}
+  with_items:
+  - trivy
+  - argocd
+  - ncc
+  tags:
+  - install
+  - cicd

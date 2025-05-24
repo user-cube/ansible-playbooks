@@ -1,23 +1,43 @@
-- name: Install homebrew packages
+- name: Install laptop configuration tools
   command: brew install --formula {{ item }}
   with_items:
   - koekeishiya/formulae/yabai
   - koekeishiya/formulae/skhd
+  - fzf
+  - zoxide
+  tags:
+  - install
+  - cli-apps
+
+- name: Install text interaction tools
+  command: brew install --formula {{ item }}
+  with_items:
   - bat
   - jq
   - yq
+  - ripgrep
+  - yamllint
+  tags:
+  - install
+  - cli-apps
+
+- name: Monitoring tools
+  command: brew install --formula {{ item }}
+  with_items:
   - htop
   - btop
-  - neovim
-  - wget
-  - trivy
+  tags:
+  - install
+  - cli-apps
+
+- name: Install homebrew packages
+  command: brew install --formula {{ item }}
+  with_items:
   - tree
   - watch
-  - fzf
-  - zoxide
   - autoenv
   - go-task
-  - ripgrep
+  - asciinema
   tags:
   - install
   - cli-apps

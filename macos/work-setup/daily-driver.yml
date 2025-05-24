@@ -6,6 +6,8 @@
   - include_tasks: tasks/directories.yml
   - include_tasks: tasks/ui-apps.yml
   - include_tasks: tasks/cli-apps.yml
+  - include_tasks: tasks/cicd.yml
+  - include_tasks: tasks/networking.yml
   - include_tasks: tasks/git.yml
   - include_tasks: tasks/kubernetes.yml
   - include_tasks: tasks/virtualization.yml

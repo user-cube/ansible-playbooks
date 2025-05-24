@@ -14,3 +14,11 @@
   tags:
   - install
   - editors
+
+- name: Install Neovim
+  command: brew install --formula {{ item }}
+  with_items:
+  - neovim
+  tags:
+  - install
+  - editors

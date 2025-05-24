@@ -23,6 +23,7 @@
   - helm-docs
   - helmfile
   - kyverno
+  - kubeconform
   tags:
   - install
   - kubernetes-cli-tools
