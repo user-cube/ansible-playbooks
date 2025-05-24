@@ -5,13 +5,19 @@
   - koekeishiya/formulae/skhd
   - bat
   - jq
+  - yq
   - htop
+  - btop
   - neovim
   - wget
   - trivy
   - tree
   - watch
   - fzf
+  - zoxide
+  - autoenv
+  - go-task
+  - ripgrep
   tags:
   - install
   - cli-apps
