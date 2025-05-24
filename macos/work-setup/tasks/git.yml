@@ -5,6 +5,7 @@
   - git-secrets
   - gitleaks
   - lazygit
+  - pre-commit
   tags:
   - install
   - git-tools
