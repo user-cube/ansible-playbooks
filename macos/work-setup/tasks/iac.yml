@@ -5,6 +5,7 @@
   - tflint
   - tfsec
   - tfenv
+  - terraform-ls
   tags:
   - install
   - iac
