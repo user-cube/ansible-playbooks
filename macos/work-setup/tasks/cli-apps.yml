@@ -5,6 +5,7 @@
   - koekeishiya/formulae/skhd
   - fzf
   - zoxide
+  - asdf
   tags:
   - install
   - cli-apps
