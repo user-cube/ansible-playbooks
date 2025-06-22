@@ -2,6 +2,7 @@
   command: brew install --cask {{ item }}
   with_items:
   - headlamp
+  - freelens
   tags:
   - install
   - cluster-visualization
