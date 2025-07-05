@@ -1,0 +1,14 @@
+- name: Install networking tools
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - httpie
+    - iperf
+    - nmap
+    - curl
+    - wget
+  become: true
+  tags:
+    - install
+    - networking

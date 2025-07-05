@@ -1,0 +1,10 @@
+---
+- name: Install Ubuntu Applications for daily use
+  hosts: localhost
+
+  tasks:
+    - include_tasks: ../macos/tasks/directories.yml
+    - include_tasks: tasks/ui-apps.yml
+    - include_tasks: tasks/cli-apps.yml
+    - include_tasks: tasks/cicd.yml
+    - include_tasks: tasks/networking.yml
