@@ -1,0 +1,12 @@
+- name: Install containerization tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - colima
+      - docker
+      - docker-compose
+      - docker-credential-helper
+    state: present
+  tags:
+    - install
+    - virtualization
+    - colima

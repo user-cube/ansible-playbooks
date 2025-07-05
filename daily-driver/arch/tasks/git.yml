@@ -1,0 +1,13 @@
+- name: Install git tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - git
+      - git-secrets
+      - gitleaks
+      - lazygit
+      - pre-commit
+      - github-cli
+    state: present
+  tags:
+    - install
+    - git-tools

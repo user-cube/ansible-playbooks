@@ -1,0 +1,31 @@
+- name: Install MesloLGS NF Regular.ttf
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    dest: ~/.local/share/fonts/MesloLGS NF Regular.ttf
+  tags: 
+    - install
+    - fonts
+
+- name: Install MesloLGS NF Bold.ttf
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    dest: ~/.local/share/fonts/MesloLGS NF Bold.ttf
+  tags: 
+    - install
+    - fonts
+
+- name: Install MesloLGS NF Italic.ttf
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    dest: ~/.local/share/fonts/MesloLGS NF Italic.ttf
+  tags:
+    - install
+    - fonts
+
+- name: Install MesloLGS NF Bold Italic.ttf
+  get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    dest: ~/.local/share/fonts/MesloLGS NF Bold Italic.ttf
+  tags:
+    - install
+    - fonts

@@ -1,0 +1,12 @@
+- name: Install networking tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - httpie
+      - iperf
+      - nmap
+      - curl
+      - wget
+    state: present
+  tags:
+    - install
+    - networking

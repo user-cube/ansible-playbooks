@@ -1,0 +1,21 @@
+- name: Install CLI tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - fzf
+      - zoxide
+      - bat
+      - jq
+      - yq
+      - ripgrep
+      - yamllint
+      - htop
+      - btop
+      - tree
+      - watch
+      - autoenv
+      - go-task
+      - asciinema
+    state: present
+  tags:
+    - install
+    - cli-apps

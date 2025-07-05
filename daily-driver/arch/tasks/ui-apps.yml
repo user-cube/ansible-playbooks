@@ -1,0 +1,12 @@
+- name: Install UI apps (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - devtoys
+      - caffeine-ng
+      - obsidian
+      - spotify
+      - font-hack-nerd-font
+    state: present
+  tags:
+    - install
+    - ui-apps

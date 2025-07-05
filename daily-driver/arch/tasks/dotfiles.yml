@@ -1,0 +1,27 @@
+- name: Clone dotfiles repository
+  git:
+    repo: https://github.com/user-cube/dotfiles.git
+    dest: ~/dotfiles
+    update: yes
+    clone: yes
+  tags: 
+    - dotfiles
+    - install
+
+- name: Copy ~/dotfiles/.config to ~/.config
+  command: cp -r ~/dotfiles/.config ~/.config
+  tags: 
+    - dotfiles
+    - install
+
+- name: Copy ~/dotfiles/.zshrc to ~/.zshrc
+  command: cp ~/dotfiles/.zshrc_arch ~/.zshrc
+  tags: 
+    - dotfiles
+    - install
+
+- name: Copy ~/dotfiles/git_hooks to ~/git_hooks
+  command: cp -r ~/dotfiles/git_hooks ~/git_hooks
+  tags: 
+    - dotfiles
+    - install

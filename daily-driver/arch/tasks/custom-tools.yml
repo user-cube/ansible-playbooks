@@ -1,0 +1,20 @@
+- name: Install custom golang tools
+  command: go install {{ item }}
+  with_items:
+    - github.com/user-cube/kontext@latest
+    - github.com/user-cube/gclone@latest
+    - github.com/user-cube/aws-cli-manager/v2@latest
+    - github.com/user-cube/auth-refresher@latest
+  tags:
+    - install
+    - custom-tools
+
+- name: Install demo tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - imagemagick
+      - gifsicle
+    state: present
+  tags:
+    - demo
+    - custom-tools

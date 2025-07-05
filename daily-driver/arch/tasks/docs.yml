@@ -1,0 +1,9 @@
+# Documentation tools (yay/AUR)
+- name: Documentation tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - markdown-toc
+    state: present
+  tags:
+    - install
+    - documentation-tools

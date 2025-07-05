@@ -1,0 +1,20 @@
+- name: Install golang (pacman)
+  become: true
+  pacman:
+    name:
+      - go
+    state: present
+  tags:
+    - install
+    - golang
+    - go
+    - programming-languages
+
+- name: Install golang tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - goreleaser
+    state: present
+  tags:
+    - install
+    - golang-tools

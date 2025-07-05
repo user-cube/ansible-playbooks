@@ -1,0 +1,33 @@
+- name: Install terraform tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - terraform-docs
+      - tflint
+      - tfsec
+      - tfenv
+      - terraform-ls
+    state: present
+  tags:
+    - install
+    - iac
+    - terraform
+
+- name: Install opentofu (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - opentofu
+    state: present
+  tags:
+    - install
+    - iac
+    - opentofu
+
+- name: Install packer (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - packer
+    state: present
+  tags:
+    - install
+    - iac
+    - packer

@@ -1,0 +1,26 @@
+- name: Create ~/personal directory
+  ansible.builtin.file:
+    path: ~/personal
+    state: directory
+    mode: '0755'
+  tags:
+    - directories
+    - install
+
+- name: Create ~/work directory
+  ansible.builtin.file:
+    path: ~/work
+    state: directory
+    mode: '0755'
+  tags:
+    - directories
+    - install
+
+- name: Create ~/hooks directory
+  ansible.builtin.file:
+    path: ~/hooks
+    state: directory
+    mode: '0755'
+  tags:
+    - directories
+    - install

@@ -1,0 +1,22 @@
+- name: Install AWS CLI and Tools (pacman)
+  become: true
+  pacman:
+    name:
+      - aws-cli
+    state: present
+  tags:
+    - install
+    - aws
+    - cli-tools
+
+- name: Install AWS Tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - aws-iam-authenticator
+      - eksctl
+      - session-manager-plugin
+    state: present
+  tags:
+    - install
+    - aws
+    - cli-tools

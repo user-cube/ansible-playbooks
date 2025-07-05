@@ -1,0 +1,33 @@
+- name: Install cluster visualization tools - UI (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - headlamp
+      - freelens
+    state: present
+  tags:
+    - install
+    - cluster-visualization
+
+- name: Install cluster visualization tools - CLI (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - k9s
+      - stern
+    state: present
+  tags:
+    - install
+    - cluster-visualization
+
+- name: Kubernetes CLI tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - kubectl
+      - helm
+      - helm-docs
+      - helmfile
+      - kyverno
+      - kubeconform
+    state: present
+  tags:
+    - install
+    - kubernetes-cli-tools

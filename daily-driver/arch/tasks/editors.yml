@@ -1,0 +1,10 @@
+- name: Install editors (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - visual-studio-code-bin
+      - jetbrains-toolbox
+      - neovim
+    state: present
+  tags:
+    - install
+    - editors

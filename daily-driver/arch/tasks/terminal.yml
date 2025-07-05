@@ -1,0 +1,8 @@
+- name: Install terminal (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - warp-terminal-bin
+    state: present
+  tags:
+    - install
+    - terminal

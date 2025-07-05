@@ -1,0 +1,10 @@
+- name: Install CICD tools (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - trivy
+      - argocd
+      - ncc
+    state: present
+  tags:
+    - install
+    - cicd

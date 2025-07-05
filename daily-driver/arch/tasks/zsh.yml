@@ -1,0 +1,38 @@
+- name: Download powerlevel10k theme
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/powerlevel10k
+    depth: 1
+  tags:
+    - install
+    - zsh
+
+- name: Download zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    depth: 1
+    update: yes
+  tags:
+    - install
+    - zsh
+
+- name: Download zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    depth: 1
+    update: yes
+  tags:
+    - install
+    - zsh
+
+- name: Download autoenv
+  git:
+    repo: https://github.com/hyperupcall/autoenv.git
+    dest: ~/.autoenv
+    depth: 1
+    update: yes
+  tags:
+    - install
+    - zsh

@@ -1,0 +1,25 @@
+---
+- name: Install Arch Applications for Daily Use
+  hosts: localhost
+
+  tasks:
+  - include_tasks: tasks/directories.yml
+  - include_tasks: tasks/ui-apps.yml
+  - include_tasks: tasks/cli-apps.yml
+  - include_tasks: tasks/cicd.yml
+  - include_tasks: tasks/networking.yml
+  - include_tasks: tasks/git.yml
+  - include_tasks: tasks/kubernetes.yml
+  - include_tasks: tasks/virtualization.yml
+  - include_tasks: tasks/docs.yml
+  - include_tasks: tasks/editors.yml
+  - include_tasks: tasks/aws.yml
+  - include_tasks: tasks/golang.yml
+  - include_tasks: tasks/iac.yml
+  - include_tasks: tasks/terminal.yml
+  - include_tasks: tasks/custom-tools.yml
+  - include_tasks: tasks/nvim.yml
+  - include_tasks: tasks/fonts.yml
+  - include_tasks: tasks/dotfiles.yml
+  - include_tasks: tasks/zsh.yml
+  - include_tasks: tasks/services.yml # Start services
