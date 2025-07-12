@@ -1,12 +1,30 @@
 - name: Install containerization tools (yay/AUR)
   kewlfft.aur.aur:
     name:
-      - colima
       - docker
       - docker-compose
       - docker-credential-helper
+      - docker-buildx
     state: present
   tags:
     - install
     - virtualization
     - colima
+
+- name: Create Docker CLI plugin directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.docker/cli-plugins"
+    state: directory
+    mode: '0755'
+  tags:
+  - virtualization
+  - docker-buildx
+
+- name: LazyDocker (yay/AUR)
+  kewlfft.aur.aur:
+    name:
+      - lazydocker
+    state: present
+  tags:
+    - install
+    - virtualization
