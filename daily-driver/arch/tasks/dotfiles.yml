@@ -14,6 +14,12 @@
     - dotfiles
     - install
 
+- name: Copy ~/dotfiles/.config_arch to ~/.config
+  command: cp -r ~/dotfiles/.config_arch ~/.config
+  tags: 
+    - dotfiles
+    - install
+
 - name: Copy ~/dotfiles/.zshrc to ~/.zshrc
   command: cp ~/dotfiles/.zshrc_arch ~/.zshrc
   tags: 
