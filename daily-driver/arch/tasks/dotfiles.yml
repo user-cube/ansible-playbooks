@@ -20,7 +20,7 @@
     - dotfiles
     - install
 
-- name: Copy ~/dotfiles/.zshrc to ~/.zshrc
+- name: Copy ~/dotfiles/.zshrc_arch to ~/.zshrc
   command: cp ~/dotfiles/.zshrc_arch ~/.zshrc
   tags: 
     - dotfiles

@@ -18,8 +18,8 @@
     - dotfiles
     - install
 
-- name: Copy ~/dotfiles/.zshrc to ~/.zshrc
-  command: cp ~/dotfiles/.zshrc ~/.zshrc
+- name: Copy ~/dotfiles/.zshrc_macos to ~/.zshrc
+  command: cp ~/dotfiles/.zshrc_macos ~/.zshrc
   tags: 
     - dotfiles
     - install
