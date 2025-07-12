@@ -2,6 +2,7 @@
   command: brew install --cask {{ item }}
   with_items:
   - warp
+  - ghostty
   tags:
   - install
   - terminal
