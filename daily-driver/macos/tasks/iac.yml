@@ -5,7 +5,7 @@
   - tflint
   - tfsec
   - terraform-ls
-  - tfswitch
+  - warrensbox/tap/tfswitch
   tags:
   - install
   - iac
