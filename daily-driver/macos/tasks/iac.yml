@@ -4,8 +4,8 @@
   - terraform-docs
   - tflint
   - tfsec
-  - tfenv
   - terraform-ls
+  - tfswitch
   tags:
   - install
   - iac
