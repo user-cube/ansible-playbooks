@@ -5,6 +5,8 @@
   - docker
   - docker-compose
   - docker-credential-helper
+  - qemu
+  - lima-additional-guestagents
 
 - name: Setup Colima
   command: colima start --vm-type=vz --vz-rosetta --memory 8 work
