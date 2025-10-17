@@ -6,3 +6,12 @@
   tags:
     - install
     - zsh
+
+- name: Setup zsh
+  command: brew install --formula {{ item }}
+  with_items:
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  tags:
+  - install
+  - zsh
