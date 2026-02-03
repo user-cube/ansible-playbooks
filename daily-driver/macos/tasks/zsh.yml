@@ -1,7 +1,7 @@
 - name: Download powerlevel10k theme
-  git:
-    repo: https://github.com/romkatv/powerlevel10k.git
-    dest: ~/powerlevel10k
+  ansible.builtin.git:
+    repo: "{{ zsh_theme_repo }}"
+    dest: "{{ zsh_theme_dest }}"
     depth: 1
   tags:
     - install

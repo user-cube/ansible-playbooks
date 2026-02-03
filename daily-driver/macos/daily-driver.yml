@@ -1,6 +1,8 @@
 ---
 - name: Install MacOS Applications for Daily Driver Use
   hosts: localhost
+  vars_files:
+    - vars/main.yml
 
   tasks:
   - include_tasks: tasks/directories.yml

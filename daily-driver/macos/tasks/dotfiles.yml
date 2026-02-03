@@ -1,16 +1,7 @@
 ---
-# Repo configurável via -e "dotfiles_repo=https://github.com/outro/dotfiles.git"
-- name: Set dotfiles paths
-  ansible.builtin.set_fact:
-    home_dir: "{{ lookup('env', 'HOME') }}"
-    dotfiles_dest: "{{ lookup('env', 'HOME') }}/dotfiles"
-  tags:
-    - dotfiles
-    - install
-
 - name: Clone dotfiles repository
   ansible.builtin.git:
-    repo: "{{ dotfiles_repo | default('https://github.com/user-cube/dotfiles.git') }}"
+    repo: "{{ dotfiles_repo }}"
     dest: "{{ dotfiles_dest }}"
     update: yes
   tags:

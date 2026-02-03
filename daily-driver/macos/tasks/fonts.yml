@@ -1,31 +1,17 @@
-- name: Install MesloLGS NF Regular.ttf
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-    dest: ~/Library/Fonts/MesloLGS NF Regular.ttf
-  tags: 
-    - install
-    - fonts
-
-- name: Install MesloLGS NF Bold.ttf
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-    dest: ~/Library/Fonts/MesloLGS NF Bold.ttf
-  tags: 
-    - install
-    - fonts
-
-- name: Install MesloLGS NF Italic.ttf
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-    dest: ~/Library/Fonts/MesloLGS NF Italic.ttf
+- name: Ensure fonts directory exists
+  ansible.builtin.file:
+    path: "{{ fonts_dest_dir }}"
+    state: directory
+    mode: "0755"
   tags:
     - install
     - fonts
 
-- name: Install MesloLGS NF Bold Italic.ttf
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
-    dest: ~/Library/Fonts/MesloLGS NF Bold Italic.ttf
+- name: Install MesloLGS NF fonts (Powerlevel10k)
+  ansible.builtin.get_url:
+    url: "{{ fonts_base_url }}/{{ item | replace(' ', '%20') }}"
+    dest: "{{ fonts_dest_dir }}/{{ item }}"
+  loop: "{{ fonts_meslo_files }}"
   tags:
     - install
     - fonts
