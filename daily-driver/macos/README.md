@@ -38,6 +38,14 @@ ansible-playbook daily-driver.yml -K --tags aws
 
 Other useful tags: `cli-apps`, `kubernetes`, `git`, `editors`, `dotfiles`, etc. Pre-flight checks use tag `preflight` (and run by default); to skip them use `--skip-tags preflight`.
 
+**Test CLI apps only:**
+
+```bash
+ansible-playbook daily-driver.yml -K --tags cli-apps
+```
+
+Verify: `which yabai skhd fzf zoxide bat jq yq rg`.
+
 ## Configuration variables
 
 Variables are defined in **`vars/main.yml`** (dotfiles repo, directories, NvChad, Powerlevel10k, fonts, custom go tools). To override without editing the file:
@@ -74,6 +82,10 @@ eksctl version
 aws-iam-authenticator version
 granted --version
 ```
+
+## Services (Yabai, skhd)
+
+Yabai and skhd are started via **handlers** at the end of the play. They are notified when: laptop tools are installed (cli-apps), dotfiles `.config_macos` are synced (config reload), or when you run with tag `services`. Handlers are defined in `handlers/main.yml`. Start handlers are **idempotent**: they only start a service if it is not already running (using `pgrep`).
 
 ## Notes
 

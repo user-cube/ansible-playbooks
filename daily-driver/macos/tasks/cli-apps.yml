@@ -6,6 +6,9 @@
       - fzf
       - zoxide
     state: present
+  notify:
+    - Start Yabai
+    - Start skhd
   tags:
     - install
     - cli-apps

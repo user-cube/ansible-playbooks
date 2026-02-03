@@ -31,6 +31,9 @@
     src: "{{ dotfiles_dest }}/.config_macos/"
     dest: "{{ home_dir }}/.config/"
     delete: no
+  notify:
+    - Restart Yabai
+    - Restart skhd
   tags:
     - dotfiles
     - install
