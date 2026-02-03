@@ -26,6 +26,8 @@ ansible-galaxy collection install -r requirements.yml
 ansible-playbook daily-driver.yml -K
 ```
 
+Pre-flight checks (Homebrew installed, macOS only) run automatically. If Homebrew is missing, the playbook fails with instructions to install it.
+
 ## Run only specific tasks (tags)
 
 To install only AWS tools:
@@ -34,7 +36,7 @@ To install only AWS tools:
 ansible-playbook daily-driver.yml -K --tags aws
 ```
 
-Other useful tags: `cli-apps`, `kubernetes`, `git`, `editors`, `dotfiles`, etc.
+Other useful tags: `cli-apps`, `kubernetes`, `git`, `editors`, `dotfiles`, etc. Pre-flight checks use tag `preflight` (and run by default); to skip them use `--skip-tags preflight`.
 
 ## Configuration variables
 

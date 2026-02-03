@@ -5,6 +5,8 @@
     - vars/main.yml
 
   tasks:
+  - include_tasks: tasks/preflight.yml
+    tags: always, preflight
   - include_tasks: tasks/directories.yml
     tags: directories, install
   - include_tasks: tasks/ui-apps.yml
