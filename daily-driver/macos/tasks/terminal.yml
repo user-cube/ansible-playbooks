@@ -1,8 +1,6 @@
 - name: Install terminal
   community.general.homebrew_cask:
-    name:
-      - warp
-      - ghostty
+    name: warp
     state: present
   tags:
     - install

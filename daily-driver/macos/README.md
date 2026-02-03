@@ -84,6 +84,10 @@ ansible-playbook daily-driver.yml -K --tags directories -e '{"directories_to_cre
 
 Dotfiles tasks clone the repository defined in `vars/main.yml`, create `~/.config` if missing, and copy/sync files in an **idempotent** way. To use a different repository, set the `dotfiles_repo` variable (see above).
 
+## Ghostty terminal
+
+The playbook installs **Ghostty (tip)**, the development build: `brew install --cask ghostty@tip`. Config is synced from your dotfiles: if `dotfiles/.config/ghostty/` exists (e.g. a `config` file), it is copied to `~/.config/ghostty/`. Run with `--tags ghostty` to install Ghostty and sync config only (dotfiles should be present).
+
 ## Test fonts
 
 To install only the MesloLGS fonts (Powerlevel10k):

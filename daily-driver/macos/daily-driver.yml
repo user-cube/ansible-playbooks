@@ -46,6 +46,8 @@
     tags: fonts, install
   - include_tasks: tasks/dotfiles.yml
     tags: dotfiles, install
+  - include_tasks: tasks/ghostty.yml
+    tags: terminal, ghostty, install
   - include_tasks: tasks/zsh.yml
     tags: zsh, install
   - include_tasks: tasks/services.yml
