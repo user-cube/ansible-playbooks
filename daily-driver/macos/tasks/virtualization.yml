@@ -1,12 +1,13 @@
 - name: Install Containerization tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - colima
-  - docker
-  - docker-compose
-  - docker-credential-helper
-  - qemu
-  - lima-additional-guestagents
+  community.general.homebrew:
+    name:
+      - colima
+      - docker
+      - docker-compose
+      - docker-credential-helper
+      - qemu
+      - lima-additional-guestagents
+    state: present
 
 - name: Setup Colima
   command: colima start --vm-type=vz --vz-rosetta --memory 8 work
@@ -52,9 +53,9 @@
   - docker-buildx
 
 - name: LazyDocker
-  command: brew install --formula {{ item }}
-  with_items:
-  - lazydocker
+  community.general.homebrew:
+    name: lazydocker
+    state: present
   tags:
-  - virtualization
-  - lazydocker
+    - virtualization
+    - lazydocker

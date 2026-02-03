@@ -1,17 +1,17 @@
 - name: Install golang
-  command: brew install --formula {{ item }}
-  with_items:
-  - go
+  community.general.homebrew:
+    name: go
+    state: present
   tags:
-  - install
-  - golang
-  - go
-  - programming-languages
+    - install
+    - golang
+    - go
+    - programming-languages
 
 - name: Install golang tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - goreleaser
+  community.general.homebrew:
+    name: goreleaser
+    state: present
   tags:
-  - install
-  - golang-tools
+    - install
+    - golang-tools

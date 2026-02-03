@@ -1,10 +1,29 @@
 - name: Install AWS Packages
-  command: brew install --formula {{ item }}
-  with_items:
-  - awscli
-  - aws-iam-authenticator
-  - eksctl
+  community.general.homebrew:
+    name:
+      - awscli
+      - aws-iam-authenticator
+      - eksctl
+    state: present
   tags:
-  - install
-  - aws
-  - cli-tools
+    - install
+    - aws
+    - cli-tools
+
+- name: Tap AWS Role Assume repository
+  community.general.homebrew_tap:
+    name: common-fate/granted
+    state: present
+  tags:
+    - install
+    - aws
+    - cli-tools
+
+- name: Install AWS Role Assume (granted)
+  community.general.homebrew:
+    name: common-fate/granted/granted
+    state: present
+  tags:
+    - install
+    - aws
+    - cli-tools

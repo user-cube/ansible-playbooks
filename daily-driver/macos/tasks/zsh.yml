@@ -8,10 +8,11 @@
     - zsh
 
 - name: Setup zsh
-  command: brew install --formula {{ item }}
-  with_items:
-  - zsh-syntax-highlighting
-  - zsh-autosuggestions
+  community.general.homebrew:
+    name:
+      - zsh-syntax-highlighting
+      - zsh-autosuggestions
+    state: present
   tags:
-  - install
-  - zsh
+    - install
+    - zsh

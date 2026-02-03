@@ -10,10 +10,11 @@
   - custom-tools
 
 - name: Install tools for demo
-  command: brew install {{ item }}
-  with_items:
-  - imagemagick
-  - gifsicle
+  community.general.homebrew:
+    name:
+      - imagemagick
+      - gifsicle
+    state: present
   tags:
-  - demo
-  - custom-tools
+    - demo
+    - custom-tools

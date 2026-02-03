@@ -1,9 +1,10 @@
 - name: Install CICD tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - trivy
-  - argocd
-  - ncc
+  community.general.homebrew:
+    name:
+      - trivy
+      - argocd
+      - ncc
+    state: present
   tags:
-  - install
-  - cicd
+    - install
+    - cicd

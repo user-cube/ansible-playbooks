@@ -1,31 +1,63 @@
+---
+# Repo configurável via -e "dotfiles_repo=https://github.com/outro/dotfiles.git"
+- name: Set dotfiles paths
+  ansible.builtin.set_fact:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+    dotfiles_dest: "{{ lookup('env', 'HOME') }}/dotfiles"
+  tags:
+    - dotfiles
+    - install
+
 - name: Clone dotfiles repository
-  git:
-    repo: https://github.com/user-cube/dotfiles.git
-    dest: ~/dotfiles
-  tags: 
+  ansible.builtin.git:
+    repo: "{{ dotfiles_repo | default('https://github.com/user-cube/dotfiles.git') }}"
+    dest: "{{ dotfiles_dest }}"
+    update: yes
+  tags:
     - dotfiles
     - install
 
-- name: Copy ~/dotfiles/.config to ~/.config
-  command: cp -r ~/dotfiles/.config ~/.config
-  tags: 
+- name: Ensure ~/.config exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.config"
+    state: directory
+    mode: "0755"
+  tags:
     - dotfiles
     - install
 
-- name: Copy ~/dotfiles/.config_macos to ~/.config
-  command: cp -r ~/dotfiles/.config_macos ~/.config
-  tags: 
+- name: Sync dotfiles .config to ~/.config
+  ansible.posix.synchronize:
+    src: "{{ dotfiles_dest }}/.config/"
+    dest: "{{ home_dir }}/.config/"
+    delete: no
+  tags:
     - dotfiles
     - install
 
-- name: Copy ~/dotfiles/.zshrc_macos to ~/.zshrc
-  command: cp ~/dotfiles/.zshrc_macos ~/.zshrc
-  tags: 
+- name: Sync dotfiles .config_macos to ~/.config
+  ansible.posix.synchronize:
+    src: "{{ dotfiles_dest }}/.config_macos/"
+    dest: "{{ home_dir }}/.config/"
+    delete: no
+  tags:
     - dotfiles
     - install
 
-- name: Copy ~/dotfiles/git_hooks to ~/git_hooks
-  command: cp -r ~/dotfiles/git_hooks ~/git_hooks
-  tags: 
+- name: Copy .zshrc_macos to ~/.zshrc
+  ansible.builtin.copy:
+    src: "{{ dotfiles_dest }}/.zshrc_macos"
+    dest: "{{ home_dir }}/.zshrc"
+    remote_src: yes
+  tags:
+    - dotfiles
+    - install
+
+- name: Sync dotfiles git_hooks to ~/git_hooks
+  ansible.posix.synchronize:
+    src: "{{ dotfiles_dest }}/git_hooks/"
+    dest: "{{ home_dir }}/git_hooks/"
+    delete: no
+  tags:
     - dotfiles
     - install

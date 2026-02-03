@@ -1,43 +1,47 @@
 - name: Install laptop configuration tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - koekeishiya/formulae/yabai
-  - koekeishiya/formulae/skhd
-  - fzf
-  - zoxide
+  community.general.homebrew:
+    name:
+      - koekeishiya/formulae/yabai
+      - koekeishiya/formulae/skhd
+      - fzf
+      - zoxide
+    state: present
   tags:
-  - install
-  - cli-apps
+    - install
+    - cli-apps
 
 - name: Install text interaction tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - bat
-  - jq
-  - yq
-  - ripgrep
-  - yamllint
+  community.general.homebrew:
+    name:
+      - bat
+      - jq
+      - yq
+      - ripgrep
+      - yamllint
+    state: present
   tags:
-  - install
-  - cli-apps
+    - install
+    - cli-apps
 
 - name: Monitoring tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - htop
-  - btop
+  community.general.homebrew:
+    name:
+      - htop
+      - btop
+    state: present
   tags:
-  - install
-  - cli-apps
+    - install
+    - cli-apps
 
 - name: Install homebrew packages
-  command: brew install --formula {{ item }}
-  with_items:
-  - tree
-  - watch
-  - autoenv
-  - go-task
-  - asciinema
+  community.general.homebrew:
+    name:
+      - tree
+      - watch
+      - autoenv
+      - go-task
+      - asciinema
+    state: present
   tags:
-  - install
-  - cli-apps
+    - install
+    - cli-apps

@@ -1,24 +1,25 @@
 - name: Install VSCode Based editors
-  command: brew install --cask {{ item }}
-  with_items:
-  - visual-studio-code
-  - cursor
+  community.general.homebrew_cask:
+    name:
+      - visual-studio-code
+      - cursor
+    state: present
   tags:
-  - install
-  - editors
+    - install
+    - editors
 
 - name: Install JetBrains Based editors
-  command: brew install --cask {{ item }}
-  with_items:
-  - jetbrains-toolbox
+  community.general.homebrew_cask:
+    name: jetbrains-toolbox
+    state: present
   tags:
-  - install
-  - editors
+    - install
+    - editors
 
 - name: Install Neovim
-  command: brew install --formula {{ item }}
-  with_items:
-  - neovim
+  community.general.homebrew:
+    name: neovim
+    state: present
   tags:
-  - install
-  - editors
+    - install
+    - editors
