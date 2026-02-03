@@ -82,7 +82,7 @@ ansible-playbook daily-driver.yml -K --tags directories -e '{"directories_to_cre
 
 ## Dotfiles
 
-Dotfiles tasks clone the repository defined in `vars/main.yml`, create `~/.config` if missing, and copy/sync files in an **idempotent** way. To use a different repository, set the `dotfiles_repo` variable (see above).
+Dotfiles tasks clone the repository defined in `vars/main.yml`, create `~/.config` if missing, and copy/sync files in an **idempotent** way. Git config files are copied to `$HOME` if present in the repo: `.gitconfig-personal`, `.gitconfig-work`, `.gitconfig`. To use a different repository, set the `dotfiles_repo` variable (see above).
 
 ## Ghostty terminal
 

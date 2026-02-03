@@ -55,3 +55,26 @@
   tags:
     - dotfiles
     - install
+
+- name: Check which gitconfig files exist in dotfiles
+  ansible.builtin.stat:
+    path: "{{ dotfiles_dest }}/{{ item }}"
+  register: gitconfig_files_check
+  loop:
+    - .gitconfig-personal
+    - .gitconfig-work
+    - .gitconfig
+  tags:
+    - dotfiles
+    - install
+
+- name: Copy gitconfig files from dotfiles to HOME
+  ansible.builtin.copy:
+    src: "{{ dotfiles_dest }}/{{ item.item }}"
+    dest: "{{ home_dir }}/{{ item.item }}"
+    remote_src: yes
+  loop: "{{ gitconfig_files_check.results }}"
+  when: item.stat.exists | default(false)
+  tags:
+    - dotfiles
+    - install
