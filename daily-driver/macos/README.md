@@ -1,5 +1,25 @@
 # Setup MacBook for DevOps Work
 
+## Project structure
+
+```
+macos/
+├── ansible.cfg          # Inventory path, deprecation_warnings
+├── inventory.yml        # Explicit localhost (avoids Ansible warnings)
+├── daily-driver.yml     # Main playbook
+├── requirements.yml     # Galaxy collections
+├── README.md
+├── vars/
+│   └── main.yml         # Configuration variables
+├── handlers/
+│   └── main.yml         # Yabai/skhd start and restart
+└── tasks/               # Task files included by the playbook
+    ├── preflight.yml
+    ├── directories.yml
+    ├── cli-apps.yml
+    └── ...
+```
+
 ## Install homebrew
 
 ```bash
@@ -21,6 +41,8 @@ ansible-galaxy collection install -r requirements.yml
 ```
 
 ## Run the playbook
+
+From the `macos/` directory (so `ansible.cfg` and `inventory.yml` are found):
 
 ```bash
 ansible-playbook daily-driver.yml -K
