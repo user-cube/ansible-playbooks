@@ -1,26 +1,9 @@
-- name: Create ~/personal directory
+- name: Create home directories
   ansible.builtin.file:
-    path: ~/personal
+    path: "{{ home_dir }}/{{ item }}"
     state: directory
-    mode: '0755'
-  tags:
-    - directories
-    - install
-
-- name: Create ~/work directory
-  ansible.builtin.file:
-    path: ~/work
-    state: directory
-    mode: '0755'
-  tags:
-    - directories
-    - install
-
-- name: Create ~/hooks directory
-  ansible.builtin.file:
-    path: ~/hooks
-    state: directory
-    mode: '0755'
+    mode: "0755"
+  loop: "{{ directories_to_create }}"
   tags:
     - directories
     - install

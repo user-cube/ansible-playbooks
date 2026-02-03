@@ -1,14 +1,15 @@
 - name: Install homebrew cask
-  command: brew install --cask {{ item }}
-  with_items:
-  - devtoys
-  - caffeine
-  - macs-fan-control
-  - spotify
-  - raycast
-  - font-hack-nerd-font
-  - obsidian
-  - betterdisplay
+  community.general.homebrew_cask:
+    name:
+      - devtoys
+      - caffeine
+      - macs-fan-control
+      - spotify
+      - raycast
+      - font-hack-nerd-font
+      - obsidian
+      - betterdisplay
+    state: present
   tags:
-  - install
-  - ui-apps
+    - install
+    - ui-apps

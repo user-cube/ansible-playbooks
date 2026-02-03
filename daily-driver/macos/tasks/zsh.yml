@@ -1,17 +1,18 @@
 - name: Download powerlevel10k theme
-  git:
-    repo: https://github.com/romkatv/powerlevel10k.git
-    dest: ~/powerlevel10k
+  ansible.builtin.git:
+    repo: "{{ zsh_theme_repo }}"
+    dest: "{{ zsh_theme_dest }}"
     depth: 1
   tags:
     - install
     - zsh
 
 - name: Setup zsh
-  command: brew install --formula {{ item }}
-  with_items:
-  - zsh-syntax-highlighting
-  - zsh-autosuggestions
+  community.general.homebrew:
+    name:
+      - zsh-syntax-highlighting
+      - zsh-autosuggestions
+    state: present
   tags:
-  - install
-  - zsh
+    - install
+    - zsh

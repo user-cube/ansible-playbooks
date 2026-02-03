@@ -1,21 +1,22 @@
 - name: Install terraform
-  command: brew install --formula {{ item }}
-  with_items:
-  - terraform-docs
-  - tflint
-  - tfsec
-  - terraform-ls
-  - warrensbox/tap/tfswitch
+  community.general.homebrew:
+    name:
+      - terraform-docs
+      - tflint
+      - tfsec
+      - terraform-ls
+      - warrensbox/tap/tfswitch
+    state: present
   tags:
-  - install
-  - iac
-  - terraform
+    - install
+    - iac
+    - terraform
 
 - name: Install opentofu
-  command: brew install --formula {{ item }}
-  with_items:
-  - opentofu
+  community.general.homebrew:
+    name: opentofu
+    state: present
   tags:
-  - install
-  - iac
-  - opentofu
+    - install
+    - iac
+    - opentofu

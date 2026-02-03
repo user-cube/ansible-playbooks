@@ -1,30 +1,33 @@
 - name: Install cluster visualization tools - UI
-  command: brew install --cask {{ item }}
-  with_items:
-  - headlamp
-  - freelens
+  community.general.homebrew_cask:
+    name:
+      - headlamp
+      - freelens
+    state: present
   tags:
-  - install
-  - cluster-visualization
+    - install
+    - cluster-visualization
 
 - name: Install cluster visualization tools - CLI
-  command: brew install --formula {{ item }}
-  with_items:
-  - k9s
-  - stern
+  community.general.homebrew:
+    name:
+      - k9s
+      - stern
+    state: present
   tags:
-  - install
-  - cluster-visualization
+    - install
+    - cluster-visualization
 
 - name: Kubernetes CLI tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - kubectl
-  - helm
-  - helm-docs
-  - helmfile
-  - kyverno
-  - kubeconform
+  community.general.homebrew:
+    name:
+      - kubectl
+      - helm
+      - helm-docs
+      - helmfile
+      - kyverno
+      - kubeconform
+    state: present
   tags:
-  - install
-  - kubernetes-cli-tools
+    - install
+    - kubernetes-cli-tools

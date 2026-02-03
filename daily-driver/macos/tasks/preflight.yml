@@ -1,0 +1,38 @@
+---
+# Pre-flight checks: run before any install tasks (tag: always)
+# Fails fast with clear messages if prerequisites are missing.
+
+- name: Check if Homebrew is installed (Apple Silicon)
+  ansible.builtin.stat:
+    path: /opt/homebrew/bin/brew
+  register: homebrew_arm
+  tags:
+    - always
+    - preflight
+
+- name: Check if Homebrew is installed (Intel)
+  ansible.builtin.stat:
+    path: /usr/local/bin/brew
+  register: homebrew_intel
+  tags:
+    - always
+    - preflight
+
+- name: Fail if Homebrew is not installed
+  ansible.builtin.fail:
+    msg: |
+      Homebrew is required but was not found.
+      Install it from https://brew.sh and run this playbook again.
+      Example: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not homebrew_arm.stat.exists and not homebrew_intel.stat.exists
+  tags:
+    - always
+    - preflight
+
+- name: Ensure we are on macOS
+  ansible.builtin.assert:
+    that: ansible_facts["os_family"] == "Darwin"
+    fail_msg: "This playbook targets macOS only (os_family is {{ ansible_facts['os_family'] }})."
+  tags:
+    - always
+    - preflight

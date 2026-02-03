@@ -1,7 +1,7 @@
 - name: Documentation tools
-  command: brew install --formula {{ item }}
-  with_items:
-  - markdown-toc
+  community.general.homebrew:
+    name: markdown-toc
+    state: present
   tags:
-  - install
-  - documentation-tools
+    - install
+    - documentation-tools

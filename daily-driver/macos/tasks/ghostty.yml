@@ -1,0 +1,41 @@
+---
+# Ghostty terminal: install tip (development) version and deploy config from dotfiles
+- name: Install Ghostty (tip / development build)
+  community.general.homebrew_cask:
+    name: ghostty@tip
+    state: present
+  tags:
+    - install
+    - terminal
+    - ghostty
+
+- name: Check if Ghostty config exists in dotfiles
+  ansible.builtin.stat:
+    path: "{{ dotfiles_dest }}/.config/ghostty"
+  register: ghostty_config_src
+  tags:
+    - install
+    - terminal
+    - ghostty
+
+- name: Ensure Ghostty config directory exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.config/ghostty"
+    state: directory
+    mode: "0755"
+  when: ghostty_config_src.stat.exists | default(false) and ghostty_config_src.stat.isdir | default(false)
+  tags:
+    - install
+    - terminal
+    - ghostty
+
+- name: Sync Ghostty config from dotfiles
+  ansible.posix.synchronize:
+    src: "{{ dotfiles_dest }}/.config/ghostty/"
+    dest: "{{ home_dir }}/.config/ghostty/"
+    delete: no
+  when: ghostty_config_src.stat.exists | default(false) and ghostty_config_src.stat.isdir | default(false)
+  tags:
+    - install
+    - terminal
+    - ghostty
