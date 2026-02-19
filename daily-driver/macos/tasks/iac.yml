@@ -5,7 +5,7 @@
       - tflint
       - tfsec
       - terraform-ls
-      - warrensbox/tap/tfswitch
+      - tenv
     state: present
   tags:
     - install
