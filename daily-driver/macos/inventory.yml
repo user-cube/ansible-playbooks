@@ -1,6 +1,0 @@
----
-# Explicit inventory so Ansible does not warn about "implicit localhost"
-all:
-  hosts:
-    localhost:
-      ansible_connection: local

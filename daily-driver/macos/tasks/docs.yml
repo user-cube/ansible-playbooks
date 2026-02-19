@@ -1,7 +1,0 @@
-- name: Documentation tools
-  community.general.homebrew:
-    name: markdown-toc
-    state: present
-  tags:
-    - install
-    - documentation-tools
